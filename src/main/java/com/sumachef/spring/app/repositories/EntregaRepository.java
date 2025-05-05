@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface EntregaRepository extends JpaRepository<Entrega, Integer> {
-    List<Entrega> findByIdPedido(int idPedido);
+    List<Entrega> findByIdPedido(int pedido);
     List<Entrega> findByEstadoEntrega(String estado);
 }

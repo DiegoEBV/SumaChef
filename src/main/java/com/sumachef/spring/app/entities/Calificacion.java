@@ -13,23 +13,26 @@ import java.time.LocalDateTime;
 public class Calificacion {
 
     @Id
-    @Column(name = "id_calificacion")
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_calificacion", nullable = false)
+    private Integer idCalificacion;
 
-    @ManyToOne
-    @JoinColumn(name = "id_prod")
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "id_prod", nullable = false,
+                foreignKey = @ForeignKey(name = "FK_productos_TO_calificaciones"))
     private Producto producto;
 
-    @ManyToOne
-    @JoinColumn(name = "id_rest")
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "id_rest", nullable = false,
+                foreignKey = @ForeignKey(name = "FK_restaurantes_TO_calificaciones"))
     private Restaurante restaurante;
 
     @Column(name = "puntos_calificacion")
-    private Float puntos;
+    private Float puntosCalificacion;
 
-    @Column(name = "comentario_calificacion")
-    private String comentario;
+    @Column(name = "comentario_calificacion", length = 50)
+    private String comentarioCalificacion;
 
     @Column(name = "fecha_calificacion")
-    private LocalDateTime fecha;
+    private LocalDateTime fechaCalificacion;
 }

@@ -31,6 +31,6 @@ public class RestauranteService {
     }
 
     public List<Restaurante> buscarPorDistrito(String distrito) {
-        return restauranteRepository.findByDistritoRest(distrito);
+        return restauranteRepository.findByDistrito(distrito);
     }
 }

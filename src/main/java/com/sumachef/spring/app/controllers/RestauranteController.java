@@ -34,7 +34,7 @@ public class RestauranteController {
         service.eliminar(id);
     }
 
-    @GetMapping("/buscar")
+    @GetMapping("/{distrito}")
     public List<Restaurante> buscarPorDistrito(@RequestParam String distrito) {
         return service.buscarPorDistrito(distrito);
     }

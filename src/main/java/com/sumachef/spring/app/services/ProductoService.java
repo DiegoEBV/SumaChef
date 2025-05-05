@@ -31,10 +31,10 @@ public class ProductoService {
     }
 
     public List<Producto> buscarPorNombre(String nombre) {
-        return productoRepository.findByNombreProdContainingIgnoreCase(nombre);
+        return productoRepository.findByNombreContainingIgnoreCase(nombre);
     }
 
     public List<Producto> listarPorProveedor(Integer idProv) {
-        return productoRepository.findByIdProv(idProv);
+        return productoRepository.findByProveedorId(idProv);
     }
 }

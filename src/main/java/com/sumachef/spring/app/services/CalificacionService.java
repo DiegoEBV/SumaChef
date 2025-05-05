@@ -1,7 +1,11 @@
 package com.sumachef.spring.app.services;
 
 import com.sumachef.spring.app.entities.Calificacion;
+import com.sumachef.spring.app.entities.Producto;
+import com.sumachef.spring.app.entities.Restaurante;
 import com.sumachef.spring.app.repositories.CalificacionRepository;
+import com.sumachef.spring.app.repositories.ProductoRepository;
+import com.sumachef.spring.app.repositories.RestauranteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +17,12 @@ public class CalificacionService {
 
     @Autowired
     private CalificacionRepository calificacionRepository;
+
+    @Autowired
+    private ProductoRepository productoRepository;
+
+    @Autowired
+    private RestauranteRepository restauranteRepository;
 
     public List<Calificacion> listar() {
         return calificacionRepository.findAll();
@@ -31,10 +41,12 @@ public class CalificacionService {
     }
 
     public List<Calificacion> listarPorProducto(Integer idProd) {
-        return calificacionRepository.findByIdProd(idProd);
+        Optional<Producto> producto = productoRepository.findById(idProd);
+        return producto.map(calificacionRepository::findByProducto).orElse(List.of());
     }
 
     public List<Calificacion> listarPorRestaurante(Integer idRest) {
-        return calificacionRepository.findByIdRest(idRest);
+        Optional<Restaurante> restaurante = restauranteRepository.findById(idRest);
+        return restaurante.map(calificacionRepository::findByRestaurante).orElse(List.of());
     }
 }

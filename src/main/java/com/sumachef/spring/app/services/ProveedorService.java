@@ -31,6 +31,6 @@ public class ProveedorService {
     }
 
     public List<Proveedor> buscarPorNombre(String nombre) {
-        return proveedorRepository.findByNombreProvContainingIgnoreCase(nombre);
+        return proveedorRepository.findByNombreContainingIgnoreCase(nombre);
     }
 }
